@@ -1,0 +1,377 @@
+/* ============================================
+   CALENDAR PAGE - INDEPENDENT COMPONENT
+   ============================================ */
+
+/* Page Container */
+.page-calendar {
+    background: #5c0000;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-calendar.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* ============================================
+   BACKGROUND & FRAME
+   ============================================ */
+
+.cal-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5c0000 0%, #8b0000 50%, #5c0000 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(15px, 3vw, 30px);
+}
+
+.cal-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Paper card - off-white, centered */
+.cal-paper-card {
+    position: relative;
+    width: clamp(85%, 90%, 95%);
+    max-width: 550px;
+    aspect-ratio: 3 / 4;
+    background: #faf9f6;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(139, 0, 0, 0.05);
+    padding: clamp(25px, 5vw, 40px) clamp(20px, 4vw, 35px);
+    z-index: 2;
+    overflow: visible;
+    border-radius: clamp(4px, 0.8vw, 8px);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.cal-title {
+    text-align: center;
+    margin-bottom: clamp(20px, 4vw, 30px);
+    position: relative;
+}
+
+.cal-title-every {
+    display: block;
+    font-family: 'Great Vibes', 'Dancing Script', 'Brush Script MT', cursive;
+    font-size: clamp(20px, 4vw, 28px);
+    color: #888;
+    font-style: italic;
+    margin-bottom: clamp(3px, 0.6vw, 5px);
+    margin-right: clamp(15px, 3vw, 25px);
+    position: relative;
+    top: clamp(2px, 0.4vw, 4px);
+}
+
+.cal-title-february {
+    display: block;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: clamp(38px, 7.5vw, 56px);
+    color: #8b0000;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: clamp(-5px, -1vw, -3px);
+}
+
+/* ============================================
+   CALENDAR GRID
+   ============================================ */
+
+.cal-wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+.cal-grid {
+    position: relative;
+    z-index: 1;
+}
+
+.cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: clamp(3px, 0.5vw, 6px);
+    margin-bottom: clamp(5px, 1vw, 10px);
+    font-weight: 600;
+    font-size: clamp(10px, 1.8vw, 13px);
+    color: #666;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    gap: clamp(3px, 0.5vw, 6px);
+}
+
+/* Calendar Cell - using shared CalendarDay component styles */
+.calendar-day {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(5px, 1vw, 8px);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    min-height: 95px;
+    overflow: visible;
+}
+
+.day-number {
+    position: absolute;
+    top: clamp(6px, 1.2vw, 10px);
+    left: clamp(6px, 1.2vw, 10px);
+    z-index: 2;
+    font-size: clamp(13px, 2.2vw, 16px);
+    color: #333;
+    font-weight: 500;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.calendar-day.valentines-day {
+    background: rgba(139, 0, 0, 0.1);
+}
+
+.calendar-day.valentines-day .day-number {
+    color: #8b0000;
+    font-weight: 700;
+}
+
+.valentine-heart-sticker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.heart-icon {
+    font-size: clamp(20px, 3.5vw, 28px);
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   STICKERS & PHOTOS
+   ============================================ */
+
+.cal-sticker {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Polaroid-style photo */
+.cal-polaroid {
+    background: #fff;
+    padding: clamp(4px, 0.8vw, 8px);
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cal-polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1px;
+}
+
+.cal-tape {
+    position: absolute;
+    top: clamp(-6px, -1.2vw, -8px);
+    left: 50%;
+    transform: translateX(-50%) rotate(var(--tape-rot, 0deg));
+    width: 50%;
+    height: clamp(10px, 2vw, 14px);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 6;
+}
+
+.cal-polaroid-yellow {
+    border: clamp(3px, 0.6vw, 5px) solid #ffd700;
+    padding: clamp(3px, 0.6vw, 5px);
+}
+
+.cal-hearts {
+    position: absolute;
+    top: clamp(-12px, -2.4vw, -16px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(9px, 1.8vw, 12px);
+    z-index: 7;
+    background: rgba(255, 255, 255, 0.95);
+    padding: clamp(2px, 0.4vw, 4px) clamp(4px, 0.8vw, 6px);
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* Photo 1 - Near Feb 1-2 (left, partially off edge) */
+.cal-photo-1 {
+    top: clamp(8%, 2vw, 12%);
+    left: clamp(-15px, -3vw, -10px);
+    width: clamp(50px, 10vw, 75px);
+    height: clamp(40px, 8vw, 60px);
+    transform: rotate(-6deg);
+}
+
+.cal-photo-1 .cal-tape {
+    --tape-rot: -3deg;
+}
+
+/* Photo 2 - Near Feb 5-6 (tilted, yellow border) */
+.cal-photo-2 {
+    top: clamp(8%, 2vw, 12%);
+    right: clamp(8%, 2vw, 12%);
+    width: clamp(55px, 11vw, 80px);
+    height: clamp(42px, 8.5vw, 65px);
+    transform: rotate(7deg);
+}
+
+.cal-photo-2 .cal-tape {
+    --tape-rot: 3deg;
+}
+
+/* Photo 3 - Near Feb 10-11 (small, tilted) */
+.cal-photo-3 {
+    top: clamp(28%, 6vw, 35%);
+    left: clamp(5%, 1.5vw, 10%);
+    width: clamp(45px, 9vw, 68px);
+    height: clamp(45px, 9vw, 68px);
+    transform: rotate(-5deg);
+}
+
+.cal-photo-3 .cal-tape {
+    --tape-rot: -2deg;
+}
+
+/* Photo 4 - Near date 20 (right side, third week) */
+.cal-photo-4 {
+    top: clamp(42%, 8.5vw, 50%);
+    right: clamp(5%, 1.5vw, 8%);
+    width: clamp(42px, 8.5vw, 65px);
+    height: clamp(60px, 12vw, 90px);
+    transform: rotate(4deg);
+}
+
+.cal-photo-4 .cal-tape {
+    --tape-rot: 2deg;
+}
+
+/* Photo 5 - Right below date 17 (moved left) */
+.cal-photo-5 {
+    top: clamp(50%, 10vw, 58%);
+    left: clamp(25%, 5vw, 35%);
+    transform: rotate(-3deg);
+    width: clamp(52px, 10.5vw, 78px);
+    height: clamp(48px, 9.5vw, 72px);
+}
+
+.cal-photo-5 .cal-tape {
+    --tape-rot: -2deg;
+}
+
+/* Bottom-left "You're mine." with heart outline */
+.cal-you-mine {
+    bottom: clamp(15px, 3vw, 25px);
+    left: clamp(-5px, -1vw, 5px);
+    z-index: 6;
+}
+
+.cal-heart-outline {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    font-size: clamp(16px, 3vw, 22px);
+    z-index: 1;
+}
+
+.cal-you-mine-text {
+    font-family: 'Georgia', serif;
+    font-size: clamp(12px, 2.2vw, 15px);
+    color: #8b0000;
+    background: rgba(255, 255, 255, 0.95);
+    padding: clamp(6px, 1.2vw, 10px) clamp(10px, 2vw, 15px);
+    border: 2px dashed #8b0000;
+    border-radius: 6px;
+    transform: rotate(-2deg);
+    margin-left: clamp(12px, 2.5vw, 18px);
+    text-shadow: none;
+}
+
+/* Bottom-right love note heart sticker */
+.cal-love-note {
+    bottom: clamp(15px, 3vw, 25px);
+    right: clamp(5px, 1vw, 10px);
+    z-index: 6;
+    transform: rotate(3deg);
+}
+
+.cal-love-note-heart {
+    background: #8b0000;
+    border-radius: 50%;
+    width: clamp(100px, 20vw, 150px);
+    height: clamp(100px, 20vw, 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 2.5vw, 18px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.cal-love-note-heart::before {
+    content: '❤️';
+    position: absolute;
+    top: clamp(-8px, -1.6vw, -5px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(20px, 4vw, 28px);
+    z-index: 1;
+}
+
+.cal-love-note-text {
+    font-family: 'Georgia', serif;
+    font-size: clamp(9px, 1.6vw, 11px);
+    color: #fff;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+    position: relative;
+}
+

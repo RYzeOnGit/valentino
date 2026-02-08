@@ -1,0 +1,257 @@
+/* ============================================
+   VALENTINE ENVELOPE PAGE - INDEPENDENT COMPONENT
+   ============================================ */
+
+/* Page Container */
+.ve-page {
+    background: #5c0000;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ve-page.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* ============================================
+   BACKGROUND LAYERS
+   ============================================ */
+
+.ve-background {
+    width: 100%;
+    height: 100%;
+    background: #5c0000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(15px, 3vw, 30px);
+    overflow: visible;
+}
+
+/* Lighter red mid-layer rectangle */
+.ve-mid-layer {
+    position: relative;
+    width: clamp(90%, 95%, 98%);
+    max-width: 600px;
+    aspect-ratio: 3 / 4;
+    background: #8b0000;
+    border-radius: clamp(8px, 1.5vw, 12px);
+    padding: clamp(20px, 4vw, 35px);
+    z-index: 2;
+    overflow: visible;
+}
+
+/* ============================================
+   WHITE CARD
+   ============================================ */
+
+.ve-white-card {
+    position: absolute;
+    top: 58%;
+    left: 52%;
+    transform: translate(-50%, -50%) rotate(-2deg);
+    width: clamp(280px, 72%, 430px);
+    height: clamp(300px, 76%, 450px);
+    background: #ffffff;
+    border-radius: clamp(8px, 1.5vw, 12px);
+    box-shadow: 
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        0 6px 18px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    padding: clamp(30px, 6vw, 50px);
+    overflow: visible;
+}
+
+/* Card text - positioned at bottom */
+.ve-card-text {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: clamp(8px, 1.5vw, 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.ve-card-top {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: clamp(9px, 1.8vw, 14px);
+    font-weight: 700;
+    color: #8b0000;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.5px, 0.1vw, 1px);
+    margin-bottom: clamp(6px, 1.2vw, 10px);
+}
+
+.ve-card-main {
+    font-family: 'Great Vibes', 'Dancing Script', cursive;
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 400;
+    color: #8b0000;
+    line-height: 1.1;
+    margin-bottom: clamp(4px, 0.8vw, 8px);
+}
+
+.ve-card-subtitle {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: clamp(8px, 1.5vw, 12px);
+    font-weight: 400;
+    color: #888;
+    font-style: italic;
+}
+
+/* Tulip sticker */
+.ve-tulip-sticker {
+    position: absolute;
+    top: clamp(45%, 9vw, 55%);
+    left: clamp(55%, 11vw, 65%);
+    font-size: clamp(28px, 5.5vw, 42px);
+    z-index: 8;
+    transform: rotate(8deg);
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Postage stamp */
+.ve-postage-stamp {
+    position: absolute;
+    top: clamp(20px, 4vw, 30px);
+    right: clamp(20px, 4vw, 30px);
+    background: rgba(255, 255, 255, 0.95);
+    border: clamp(2px, 0.4vw, 3px) solid #8b0000;
+    border-radius: clamp(4px, 0.8vw, 6px);
+    padding: clamp(6px, 1.2vw, 10px) clamp(10px, 2vw, 14px);
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 0.8vw, 6px);
+    z-index: 8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transform: rotate(3deg);
+}
+
+.ve-postage-num {
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(14px, 2.8vw, 20px);
+    font-weight: 700;
+    color: #8b0000;
+}
+
+.ve-postage-heart {
+    font-size: clamp(12px, 2.4vw, 18px);
+}
+
+/* ============================================
+   PHOTO CLUSTER (TOP LEFT)
+   ============================================ */
+
+.ve-photo-cluster {
+    position: absolute;
+    top: clamp(2%, 1vw, 4%);
+    left: clamp(2%, 1vw, 4%);
+    width: clamp(220px, 56%, 340px);
+    height: clamp(220px, 56%, 340px);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.ve-photo {
+    position: absolute;
+    z-index: 3;
+}
+
+.ve-photo-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: clamp(2px, 0.4vw, 4px);
+}
+
+.ve-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Stamp style - perforated edge */
+.ve-photo-stamp .ve-photo-frame {
+    border: clamp(2px, 0.4vw, 3px) dashed rgba(139, 0, 0, 0.3);
+}
+
+/* Polaroid style - white border */
+.ve-photo-polaroid .ve-photo-frame {
+    padding: clamp(4px, 0.8vw, 8px);
+    background: #fff;
+}
+
+.ve-photo-polaroid .ve-photo-frame img {
+    border-radius: clamp(1px, 0.2vw, 2px);
+}
+
+/* ============================================
+   TEXT BUBBLES (TOP RIGHT)
+   ============================================ */
+
+.ve-text-bubbles {
+    position: absolute;
+    top: clamp(8%, 1.5vw, 12%);
+    right: clamp(2%, 0.5vw, 4%);
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3px, 0.6vw, 6px);
+}
+
+.ve-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: clamp(6px, 1.2vw, 10px);
+    padding: clamp(3px, 0.6vw, 6px) clamp(6px, 1.2vw, 10px);
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        0 1px 3px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: clamp(3px, 0.6vw, 5px);
+    transform: rotate(-1deg);
+    z-index: 4;
+}
+
+.ve-bubble-2 {
+    transform: rotate(1deg);
+    margin-left: clamp(3px, 0.6vw, 6px);
+}
+
+.ve-bubble-3 {
+    transform: rotate(-1deg);
+}
+
+.ve-bubble-heart {
+    font-size: clamp(8px, 1.6vw, 12px);
+    flex-shrink: 0;
+}
+
+.ve-bubble-text {
+    font-family: 'Georgia', serif;
+    font-size: clamp(8px, 1.6vw, 12px);
+    color: #8b0000;
+    font-weight: 500;
+    white-space: nowrap;
+}
+

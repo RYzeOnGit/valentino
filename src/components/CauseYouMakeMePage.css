@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap');
+
+/* ============================================
+   CAUSE YOU MAKE ME PAGE
+   ============================================ */
+
+/* Page Container */
+.page-cause-you-make-me {
+    background: #5c0000;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-cause-you-make-me.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* ============================================
+   BACKGROUND & FRAME
+   ============================================ */
+
+.cymm-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5c0000 0%, #8b0000 50%, #5c0000 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(15px, 3vw, 30px);
+}
+
+.cymm-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cymm-frame {
+    position: relative;
+    width: clamp(90%, 95%, 98%);
+    max-width: 600px;
+    aspect-ratio: 3 / 4;
+    border: clamp(2px, 0.4vw, 4px) solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        inset 0 0 0 clamp(1px, 0.2vw, 2px) rgba(255, 255, 255, 0.5),
+        0 0 clamp(20px, 4vw, 40px) rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    overflow: visible;
+    background: #faf9f6;
+    border-radius: clamp(4px, 0.8vw, 8px);
+}
+
+/* ============================================
+   PAPER CARD
+   ============================================ */
+
+.cymm-paper-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #faf9f6;
+    border-radius: clamp(4px, 0.8vw, 8px);
+    padding: clamp(20px, 4vw, 40px);
+    overflow: visible;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.cymm-headline {
+    position: absolute;
+    top: clamp(12px, 2.5vw, 22px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+    font-size: clamp(24px, 5.5vw, 40px);
+    font-weight: 400;
+    color: #8b0000;
+    text-align: center;
+    z-index: 10;
+    letter-spacing: clamp(2px, 0.4vw, 4px);
+    text-shadow: 
+        0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.cymm-secondary-text {
+    position: absolute;
+    bottom: clamp(20px, 4.5vw, 35px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Great Vibes', 'Dancing Script', cursive;
+    font-size: clamp(24px, 5.5vw, 42px);
+    font-weight: 400;
+    color: #8b0000;
+    text-align: center;
+    z-index: 10;
+    letter-spacing: clamp(2px, 0.4vw, 4px);
+    text-shadow: 
+        0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+/* ============================================
+   PHOTO COLLAGE
+   ============================================ */
+
+.cymm-collage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.cymm-photo {
+    position: absolute;
+    border: clamp(3px, 0.6vw, 6px) solid #fff;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: clamp(2px, 0.4vw, 4px);
+    background: #fff;
+}
+
+.cymm-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Main polaroid - largest */
+.cymm-main-polaroid {
+    aspect-ratio: 1 / 1;
+    z-index: 6;
+}
+
+/* Medium polaroids */
+.cymm-polaroid {
+    aspect-ratio: 1 / 1;
+    z-index: 5;
+}
+
+/* Small mini-prints */
+.cymm-mini {
+    aspect-ratio: 1 / 1;
+    z-index: 4;
+}
+
+/* Optional tape strips */
+.cymm-photo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 20%;
+    width: 30%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    transform: rotate(-2deg);
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.cymm-photo::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: 20%;
+    width: 30%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    transform: rotate(2deg);
+    z-index: 1;
+    opacity: 0.6;
+}
+
+/* ============================================
+   CUTE DOODLES/STICKERS
+   ============================================ */
+
+.cymm-doodle {
+    position: absolute;
+    font-size: clamp(16px, 3vw, 28px);
+    pointer-events: none;
+    z-index: 7;
+    animation: doodleFloat 3s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.cymm-doodle-heart-1 {
+    top: 15%;
+    left: 10%;
+    color: #ff69b4;
+    animation-delay: 0s;
+}
+
+.cymm-doodle-heart-2 {
+    top: 20%;
+    right: 12%;
+    color: #ff1493;
+    animation-delay: 0.5s;
+}
+
+.cymm-doodle-sparkle-1 {
+    bottom: 30%;
+    left: 8%;
+    color: #ffb3d9;
+    animation-delay: 1s;
+}
+
+.cymm-doodle-sparkle-2 {
+    bottom: 35%;
+    right: 10%;
+    color: #ffb3d9;
+    animation-delay: 1.5s;
+}
+
+.cymm-doodle-bow {
+    top: 50%;
+    left: 5%;
+    color: #ff69b4;
+    animation-delay: 0.8s;
+}
+
+@keyframes doodleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-8px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+

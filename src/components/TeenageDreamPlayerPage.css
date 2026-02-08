@@ -1,0 +1,448 @@
+/* ============================================
+   TEENAGE DREAM PLAYER PAGE
+   ============================================ */
+
+/* Page Container */
+.page-teenage-dream-player {
+    background: #5c0000;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-teenage-dream-player.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* ============================================
+   BACKGROUND & FRAME
+   ============================================ */
+
+.tdp-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5c0000 0%, #8b0000 50%, #5c0000 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(15px, 3vw, 30px);
+}
+
+.tdp-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tdp-frame {
+    position: relative;
+    width: clamp(90%, 95%, 98%);
+    max-width: 600px;
+    aspect-ratio: 3 / 4;
+    border: clamp(2px, 0.4vw, 4px) solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        inset 0 0 0 clamp(1px, 0.2vw, 2px) rgba(255, 255, 255, 0.5),
+        0 0 clamp(20px, 4vw, 40px) rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    overflow: visible;
+    background: #faf9f6;
+    border-radius: clamp(4px, 0.8vw, 8px);
+}
+
+/* ============================================
+   DECORATIVE PHOTOS AROUND PLAYER
+   ============================================ */
+
+.tdp-photo {
+    position: absolute;
+    border: clamp(3px, 0.6vw, 6px) solid #fff;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.25),
+        0 2px 4px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border-radius: clamp(2px, 0.4vw, 4px);
+    background: #fff;
+    z-index: 4;
+}
+
+.tdp-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tdp-photo-1 {
+    top: 8%;
+    left: 8%;
+    width: clamp(80px, 20%, 140px);
+    height: clamp(80px, 20%, 140px);
+    transform: rotate(-6deg);
+}
+
+.tdp-photo-2 {
+    top: 12%;
+    right: 10%;
+    width: clamp(70px, 18%, 120px);
+    height: clamp(70px, 18%, 120px);
+    transform: rotate(7deg);
+}
+
+.tdp-photo-3 {
+    bottom: 20%;
+    left: 10%;
+    width: clamp(75px, 19%, 130px);
+    height: clamp(75px, 19%, 130px);
+    transform: rotate(-5deg);
+}
+
+.tdp-photo-4 {
+    bottom: 15%;
+    right: 8%;
+    width: clamp(70px, 18%, 120px);
+    height: clamp(70px, 18%, 120px);
+    transform: rotate(6deg);
+}
+
+.tdp-photo-5 {
+    top: 50%;
+    left: 5%;
+    width: clamp(65px, 16%, 110px);
+    height: clamp(65px, 16%, 110px);
+    transform: translateY(-50%) rotate(-4deg);
+    z-index: 3;
+}
+
+/* Optional tape strips */
+.tdp-photo::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 25%;
+    width: 25%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    transform: rotate(-2deg);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* ============================================
+   CUTE DECORATIONS
+   ============================================ */
+
+.tdp-deco {
+    position: absolute;
+    font-size: clamp(18px, 3.5vw, 32px);
+    pointer-events: none;
+    z-index: 5;
+    animation: decoFloat 3s ease-in-out infinite;
+    opacity: 0.75;
+}
+
+.tdp-deco-heart-1 {
+    top: 5%;
+    left: 15%;
+    color: #ff69b4;
+    animation-delay: 0s;
+}
+
+.tdp-deco-heart-2 {
+    top: 8%;
+    right: 15%;
+    color: #ff1493;
+    animation-delay: 0.5s;
+}
+
+.tdp-deco-heart-3 {
+    bottom: 12%;
+    left: 15%;
+    color: #ff69b4;
+    animation-delay: 1s;
+}
+
+.tdp-deco-sparkle-1 {
+    top: 15%;
+    left: 5%;
+    color: #ffb3d9;
+    animation-delay: 0.3s;
+}
+
+.tdp-deco-sparkle-2 {
+    top: 18%;
+    right: 5%;
+    color: #ffb3d9;
+    animation-delay: 0.8s;
+}
+
+.tdp-deco-sparkle-3 {
+    bottom: 18%;
+    right: 12%;
+    color: #ffb3d9;
+    animation-delay: 1.3s;
+}
+
+.tdp-deco-bow {
+    top: 50%;
+    right: 5%;
+    color: #ff69b4;
+    animation: decoFloatBow 3s ease-in-out infinite;
+    animation-delay: 0.7s;
+}
+
+.tdp-deco-star {
+    bottom: 8%;
+    left: 5%;
+    color: #ffd700;
+    animation-delay: 1.2s;
+}
+
+@keyframes decoFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateY(-8px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+@keyframes decoFloatBow {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateY(calc(-50% - 8px)) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* ============================================
+   MUSIC PLAYER CARD
+   ============================================ */
+
+.tdp-player-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(180px, 43.2%, 276px);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.65));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: clamp(16px, 3vw, 20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: clamp(11px, 2.1vw, 17px);
+    z-index: 10;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Top bar */
+.tdp-player-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(7px, 1.4vw, 11px);
+}
+
+.tdp-back-icon,
+.tdp-wave-icon {
+    opacity: 0.8;
+}
+
+/* Song info */
+.tdp-song-info {
+    text-align: center;
+    margin-bottom: clamp(8px, 1.75vw, 14px);
+}
+
+.tdp-song-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(14px, 3vw, 20px);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: clamp(2px, 0.6vw, 4px);
+    letter-spacing: -0.5px;
+}
+
+.tdp-song-artist {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(10px, 2.2vw, 15px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: -0.3px;
+}
+
+/* Progress bar */
+.tdp-progress-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 1.05vw, 7px);
+    margin-bottom: clamp(8px, 1.75vw, 14px);
+}
+
+.tdp-time {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(10px, 2vw, 14px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    min-width: clamp(28px, 6vw, 40px);
+    text-align: center;
+}
+
+.tdp-time-left {
+    text-align: left;
+}
+
+.tdp-time-right {
+    text-align: right;
+}
+
+.tdp-progress-bar {
+    flex: 1;
+    height: clamp(20px, 4vw, 28px);
+    display: flex;
+    align-items: center;
+}
+
+.tdp-progress-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tdp-progress-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 1px;
+}
+
+.tdp-progress-knob {
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(10px, 2vw, 14px);
+    height: clamp(10px, 2vw, 14px);
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Controls */
+.tdp-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(11px, 2.45vw, 20px);
+    margin-bottom: clamp(8px, 1.75vw, 14px);
+}
+
+.tdp-control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: clamp(8px, 2vw, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.tdp-control-btn:hover {
+    opacity: 1;
+}
+
+.tdp-control-btn:active {
+    opacity: 0.7;
+}
+
+.tdp-play-pause {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: clamp(28px, 5.25vw, 36px);
+    height: clamp(28px, 5.25vw, 36px);
+}
+
+/* Volume bar */
+.tdp-volume-container {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2vw, 12px);
+}
+
+.tdp-volume-icon {
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.tdp-volume-bar {
+    flex: 1;
+    height: clamp(16px, 3vw, 20px);
+    display: flex;
+    align-items: center;
+}
+
+.tdp-volume-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tdp-volume-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 1px;
+}
+
+.tdp-volume-knob {
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(8px, 1.5vw, 12px);
+    height: clamp(8px, 1.5vw, 12px);
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+

@@ -10,6 +10,7 @@ export default function Celebration({ showUnboxButton, onUnbox }) {
         <button 
           className="btn btn-unbox" 
           onClick={onUnbox}
+          style={{ display: 'block' }}
         >
           Unbox Your Surprise 🎁
         </button>

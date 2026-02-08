@@ -1,0 +1,343 @@
+/* ============================================
+   YOU & I HEART PAGE
+   ============================================ */
+
+/* Page Container */
+.page-you-and-i {
+    background: #5c0000;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-you-and-i.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* ============================================
+   FRAME
+   ============================================ */
+
+.youi-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5c0000 0%, #8b0000 50%, #5c0000 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(15px, 3vw, 30px);
+}
+
+.youi-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.youi-frame {
+    position: relative;
+    width: clamp(90%, 95%, 98%);
+    max-width: 600px;
+    aspect-ratio: 3 / 4;
+    border: clamp(2px, 0.4vw, 4px) solid rgba(139, 0, 0, 0.6);
+    box-shadow: 
+        inset 0 0 0 clamp(1px, 0.2vw, 2px) rgba(139, 0, 0, 0.3),
+        0 0 clamp(20px, 4vw, 40px) rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    overflow: visible;
+    background: #faf9f6;
+    border-radius: clamp(4px, 0.8vw, 8px);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.youi-title {
+    position: absolute;
+    top: clamp(20px, 4.5vw, 35px);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10; /* Always above collage */
+    /* Safe zone: top 0-22% */
+    max-height: 22%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.5vw, 16px);
+}
+
+.youi-title-line1 {
+    font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+    font-size: clamp(42px, 9vw, 72px);
+    font-weight: 400;
+    color: #8b0000;
+    letter-spacing: clamp(3px, 0.6vw, 6px);
+    text-shadow: 
+        0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.3);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.youi-title-line2 {
+    font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+    font-size: clamp(38px, 8vw, 64px);
+    font-weight: 400;
+    color: #8b0000;
+    letter-spacing: clamp(2px, 0.5vw, 5px);
+    text-shadow: 
+        0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.3);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+/* ============================================
+   COLLAGE
+   ============================================ */
+
+.heart-collage-container {
+    position: absolute;
+    /* Move photos higher - centered at 45% instead of 50% */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Increase size by 20% for bigger photos with proportional spread */
+    width: clamp(396px, 95%, 720px);
+    height: clamp(396px, 95%, 720px);
+    z-index: 5; /* Below text, above background */
+}
+
+.heart-collage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+/* ============================================
+   TILES
+   ============================================ */
+
+.heart-photo {
+    position: absolute;
+    border: clamp(1px, 0.2vw, 2px) solid #fff; /* Thin paper border */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    overflow: hidden;
+    border-radius: clamp(2px, 0.4vw, 4px);
+}
+
+.heart-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.heart-main {
+    /* Main photo: 28-32% of collage width - increased by 20% */
+    width: clamp(132px, 30%, 240px);
+    height: clamp(132px, 30%, 240px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6; /* Above small photos */
+}
+
+.heart-small {
+    /* Small photos: 14-18% of collage width - increased by additional 20% */
+    width: clamp(79px, 16%, 158px);
+    height: clamp(79px, 16%, 158px);
+    z-index: 5; /* Below main photo */
+}
+  
+
+/* ============================================
+   CAPTION
+   ============================================ */
+
+.youi-caption {
+    position: absolute;
+    /* Move caption lower */
+    bottom: clamp(6px, 1.5vw, 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10; /* Always above collage */
+    /* Safe zone: bottom 78-100% */
+    max-height: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1px, 0.3vw, 4px);
+}
+
+.youi-caption-line1,
+.youi-caption-line2 {
+    font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+    font-weight: 400;
+    color: #8b0000;
+    font-style: normal;
+    letter-spacing: clamp(2px, 0.4vw, 4px);
+    text-shadow: 
+        0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.3);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.youi-caption-line1 {
+    font-size: clamp(26px, 5.5vw, 44px);
+}
+
+.youi-caption-line2 {
+    font-size: clamp(26px, 5.5vw, 44px);
+}
+
+/* ============================================
+   SPARKLES & HEARTS DECORATIONS
+   ============================================ */
+
+.sparkle {
+    position: absolute;
+    font-size: clamp(16px, 3vw, 28px);
+    color: #ffb3d9;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 7;
+    animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+.sparkle::before {
+    content: '✨';
+}
+
+.sparkle-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 25%;
+    right: 12%;
+    animation-delay: 0.5s;
+}
+
+.sparkle-3 {
+    bottom: 30%;
+    left: 8%;
+    animation-delay: 1s;
+}
+
+.sparkle-4 {
+    bottom: 25%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+.sparkle-5 {
+    top: 50%;
+    left: 5%;
+    animation-delay: 0.8s;
+}
+
+.sparkle-6 {
+    top: 60%;
+    right: 6%;
+    animation-delay: 1.2s;
+}
+
+.heart-decoration {
+    position: absolute;
+    font-size: clamp(14px, 2.5vw, 24px);
+    color: #ff69b4;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 7;
+    animation: heartFloat 4s ease-in-out infinite;
+}
+
+.heart-decoration::before {
+    content: '💕';
+}
+
+.heart-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0.3s;
+}
+
+.heart-2 {
+    top: 30%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.heart-3 {
+    bottom: 35%;
+    left: 12%;
+    animation-delay: 0.7s;
+}
+
+.heart-4 {
+    bottom: 30%;
+    right: 12%;
+    animation-delay: 1.5s;
+}
+
+.heart-5 {
+    top: 55%;
+    left: 7%;
+    animation-delay: 0.5s;
+}
+
+.heart-6 {
+    top: 65%;
+    right: 8%;
+    animation-delay: 1.3s;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-10px) rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes heartFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-8px) scale(1.15);
+        opacity: 0.9;
+    }
+}
+
