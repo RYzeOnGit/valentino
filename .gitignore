@@ -12,6 +12,9 @@ dist/
 build/
 .netlify/
 
+# Vite
+.vite/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -22,4 +25,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Old files (keeping for reference)
+# script.js
+# styles.css (moved to src/index.css)
 

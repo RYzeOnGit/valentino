@@ -1,0 +1,1008 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff9ec7 0%, #ff6b9d 50%, #ffc0cb 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    font-size: 25px;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 1s;
+    font-size: 18px;
+}
+
+.heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 2s;
+    font-size: 22px;
+}
+
+.heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 3s;
+    font-size: 20px;
+}
+
+.heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 4s;
+    font-size: 24px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cat-emoji {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounce 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.title {
+    font-size: 32px;
+    color: #d63384;
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.btn {
+    padding: 18px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #ff6b9d, #ff9ec7);
+    color: white;
+}
+
+.btn-yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.btn-yes:active {
+    transform: translateY(-1px);
+}
+
+.btn-no {
+    background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+    color: #d63384;
+}
+
+.btn-no:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 192, 203, 0.4);
+}
+
+.btn-no:active {
+    transform: translateY(-1px);
+}
+
+.celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 107, 157, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.celebration.hidden {
+    display: none;
+}
+
+.celebration h2 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.celebration p {
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.btn-unbox {
+    background: linear-gradient(135deg, #fff, #ffe4e1);
+    color: #d63384;
+    margin-top: 20px;
+    font-size: 22px;
+    padding: 20px 40px;
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+    display: none;
+    opacity: 0;
+}
+
+.btn-unbox:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+}
+
+.btn-unbox:active {
+    transform: translateY(-1px);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff0;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    background: #ff6b9d;
+}
+
+.confetti:nth-child(2) {
+    left: 30%;
+    animation-delay: 0.5s;
+    background: #ff9ec7;
+}
+
+.confetti:nth-child(3) {
+    left: 50%;
+    animation-delay: 1s;
+    background: #ffc0cb;
+}
+
+.confetti:nth-child(4) {
+    left: 70%;
+    animation-delay: 1.5s;
+    background: #ffb6c1;
+}
+
+.confetti:nth-child(5) {
+    left: 90%;
+    animation-delay: 2s;
+    background: #ff6b9d;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* iPhone 16 Specific - Portrait (393x852px) and Pro Max (430x932px) */
+@media screen and (max-width: 430px) and (max-height: 932px) {
+    body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available; /* iOS Safari fix */
+    }
+
+    .container {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+
+    .content {
+        padding: 35px 25px;
+        border-radius: 25px;
+        margin: 0 auto;
+    }
+
+    .cat-emoji {
+        font-size: 70px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 28px;
+        margin-bottom: 35px;
+        line-height: 1.3;
+        padding: 0 10px;
+    }
+
+    .buttons-container {
+        gap: 18px;
+        padding: 0 5px;
+    }
+
+    .btn {
+        padding: 20px 30px;
+        font-size: 19px;
+        width: 100%;
+        min-height: 56px; /* Better touch target for iOS */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .celebration h2 {
+        font-size: 42px;
+        padding: 0 20px;
+    }
+
+    .celebration p {
+        font-size: 22px;
+        padding: 0 20px;
+    }
+}
+
+/* iPhone 16 Pro Max - Larger screen (430x932px) */
+@media screen and (min-width: 430px) and (max-width: 430px) and (max-height: 932px) {
+    .cat-emoji {
+        font-size: 75px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .btn {
+        padding: 22px 35px;
+        font-size: 20px;
+    }
+}
+
+/* Smaller iPhones and general mobile */
+@media screen and (max-width: 390px) {
+    .content {
+        padding: 30px 20px;
+    }
+
+    .cat-emoji {
+        font-size: 65px;
+        margin-bottom: 18px;
+    }
+
+    .title {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 18px 25px;
+        font-size: 18px;
+    }
+
+    .celebration h2 {
+        font-size: 38px;
+    }
+
+    .celebration p {
+        font-size: 20px;
+    }
+
+    .btn-unbox {
+        font-size: 18px;
+        padding: 18px 30px;
+        margin-top: 15px;
+    }
+
+    .magazine-cover {
+        padding: 15px;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 360px) {
+    .content {
+        padding: 25px 18px;
+    }
+
+    .cat-emoji {
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    .title {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .btn {
+        padding: 16px 20px;
+        font-size: 16px;
+        min-height: 52px;
+    }
+
+    .celebration h2 {
+        font-size: 32px;
+    }
+
+    .celebration p {
+        font-size: 18px;
+    }
+
+    .btn-unbox {
+        font-size: 16px;
+        padding: 16px 25px;
+        margin-top: 15px;
+    }
+
+    .magazine-cover {
+        padding: 10px;
+    }
+
+    .cover-image {
+        max-width: 95%;
+        padding: 3px;
+    }
+}
+
+/* iPhone 16 Portrait - Magazine specific */
+@media screen and (max-width: 430px) and (max-height: 932px) {
+    .magazine-page {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    }
+
+    .magazine-cover {
+        padding: 10px 5px;
+    }
+
+    .cover-image {
+        max-width: 92%;
+        max-height: 96vh;
+        box-shadow: 
+            0 0 0 1px rgba(255, 255, 255, 0.08),
+            0 20px 60px rgba(0, 0, 0, 0.9),
+            0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .book-page {
+        width: 95%;
+        height: 95%;
+        max-height: 90vh;
+    }
+
+    .scrapbook-frame {
+        width: 95%;
+        padding: clamp(12px, 2.5vw, 20px);
+    }
+
+    .scrapbook-paper {
+        padding: clamp(12px, 2.5vw, 18px);
+    }
+
+    .calendar-days {
+        grid-auto-rows: minmax(90px, auto);
+        gap: 2px;
+    }
+
+    .calendar-day {
+        min-height: 90px;
+        padding: 3px;
+    }
+
+    .sticker {
+        max-width: 70%;
+        max-height: 65%;
+    }
+}
+
+/* Magazine Book Styles */
+.magazine-book {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    z-index: 200;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-in;
+    perspective: 1500px;
+}
+
+.magazine-book.hidden {
+    display: none;
+}
+
+.book-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-page {
+    position: absolute;
+    width: 90%;
+    max-width: 500px;
+    height: 90%;
+    max-height: 700px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        0 15px 40px rgba(0, 0, 0, 0.6);
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+    cursor: pointer;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.book-page.turned {
+    transform: rotateY(-180deg);
+    z-index: 1;
+}
+
+.book-page.active {
+    z-index: 10;
+}
+
+.page-turn-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    pointer-events: none;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Cover Page */
+.page-cover {
+    z-index: 10;
+}
+
+.magazine-cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.cover-image {
+    max-width: 90%;
+    max-height: 95%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: magazineReveal 1.2s ease-out;
+    position: relative;
+    background: #fff;
+    padding: 4px;
+    transform-style: preserve-3d;
+    display: block;
+}
+
+.cover-image::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes magazineReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotateY(-15deg) translateZ(-50px);
+    }
+    50% {
+        transform: scale(1.02) rotateY(2deg) translateZ(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg) translateZ(0);
+    }
+}
+
+/* ============================================
+   CALENDAR PAGE - SCRAPBOOK STYLE
+   ============================================ */
+
+/* Page Container */
+.page-calendar {
+    background: #f5f5f0;
+    padding: 0;
+    z-index: 5;
+    transform: rotateY(180deg);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-calendar.active {
+    transform: rotateY(0deg);
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease;
+}
+
+/* Maroon Frame */
+.scrapbook-frame {
+    width: 90%;
+    max-width: 600px;
+    aspect-ratio: 3 / 4;
+    background: #8b0000;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    margin: auto;
+}
+
+/* Off-white Paper */
+.scrapbook-paper {
+    width: 100%;
+    height: 100%;
+    background: #faf9f6;
+    box-shadow: 
+        inset 0 0 0 1px rgba(139, 0, 0, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: clamp(20px, 4vw, 30px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header Section */
+.calendar-header {
+    text-align: center;
+    margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+.header-every {
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+    font-size: clamp(18px, 3.5vw, 24px);
+    color: #888;
+    font-style: italic;
+    margin-bottom: 2px;
+}
+
+.header-february {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(32px, 6vw, 48px);
+    color: #8b0000;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+/* Calendar Container - position: relative for sticker positioning */
+.calendar-container {
+    position: relative;
+    margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    position: relative;
+    z-index: 1;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: clamp(3px, 0.5vw, 6px);
+    margin-bottom: clamp(5px, 1vw, 10px);
+    font-weight: 600;
+    font-size: clamp(10px, 1.8vw, 13px);
+    color: #666;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    gap: clamp(3px, 0.5vw, 6px);
+}
+
+/* Calendar Cell - position: relative for sticker anchoring */
+.calendar-day {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    min-height: 110px;
+    overflow: hidden; /* Prevent stickers from exceeding bounds */
+}
+
+/* Day Number - z-index 1, always visible */
+.day-number {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 1;
+    font-size: clamp(12px, 2vw, 15px);
+    color: #333;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 4px;
+    border-radius: 2px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Valentine's Day - Feb 14 */
+.calendar-day.valentines-day {
+    background: #8b0000;
+}
+
+.calendar-day.valentines-day .day-number {
+    color: #fff;
+    font-weight: bold;
+}
+
+.calendar-day.valentines-day::after {
+    content: '❤️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(16px, 2.5vw, 20px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Small heart on day 13 */
+.heart-small {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: clamp(10px, 1.5vw, 12px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ============================================
+   STICKERS/PHOTOS - Anchored to Calendar Cells
+   ============================================ */
+
+/* Sticker Base - position: absolute inside calendar-day */
+.sticker {
+    position: absolute;
+    z-index: 2;
+    width: clamp(35px, 70%, 60px);
+    height: clamp(28px, 65%, 50px);
+    max-width: 75%;
+    max-height: 70%;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
+    transform: rotate(var(--sticker-rot, 0deg));
+    /* Ensure sticker stays within cell bounds */
+    top: 20%;
+    left: 12%;
+    right: auto;
+    bottom: auto;
+}
+
+.sticker img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+}
+
+/* Larger stickers for certain days */
+.sticker-stacked {
+    width: clamp(38px, 72%, 62px);
+    height: clamp(30px, 68%, 52px);
+}
+
+.sticker-yellow {
+    width: clamp(40px, 75%, 65px);
+    height: clamp(32px, 70%, 55px);
+}
+
+/* Sticker positioning within cell - override base for stacked */
+.sticker-stacked {
+    top: 30%;
+    left: 10%;
+}
+
+/* Yellow border sticker (day 6) */
+.sticker-yellow {
+    border: 3px solid #ffd700;
+    padding: 2px;
+    background: #fff;
+    border-radius: 3px;
+}
+
+/* Tape element - z-index 3 */
+.tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(var(--tape-rot, 0deg));
+    width: 45%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+}
+
+/* Hearts above yellow sticker */
+.hearts-above {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(8px, 1.2vw, 10px);
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Sticker rotations - subtle variations */
+.sticker {
+    --sticker-rot: -4deg;
+}
+
+.sticker-stacked {
+    --sticker-rot: 3deg;
+}
+
+.sticker-yellow {
+    --sticker-rot: 5deg;
+}
+
+.sticker-yellow .tape {
+    --tape-rot: 2deg;
+}
+
+/* ============================================
+   BOTTOM STICKERS
+   ============================================ */
+
+.bottom-stickers {
+    position: relative;
+    z-index: 3;
+    margin-top: auto;
+    padding-top: clamp(10px, 2vw, 15px);
+}
+
+.sticker-label {
+    position: absolute;
+    font-family: 'Georgia', serif;
+    font-size: clamp(11px, 1.8vw, 14px);
+    padding: clamp(4px, 0.8vw, 6px) clamp(6px, 1.2vw, 9px);
+    border-radius: 4px;
+    z-index: 6;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.you-mine {
+    bottom: 0;
+    left: 0;
+    color: #8b0000;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px dashed #8b0000;
+    transform: rotate(-1deg);
+}
+
+.love-note {
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    background: #8b0000;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.3;
+    width: clamp(100px, 18vw, 140px);
+    transform: rotate(2deg);
+    font-size: clamp(10px, 1.6vw, 12px);
+}
+
+/* Landscape orientation for iPhone */
+@media screen and (max-width: 932px) and (orientation: landscape) {
+    .content {
+        padding: 25px 30px;
+    }
+
+    .cat-emoji {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .buttons-container {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn {
+        flex: 1;
+        max-width: 200px;
+        padding: 16px 20px;
+        font-size: 17px;
+    }
+
+    .magazine-cover {
+        padding: 15px;
+    }
+
+    .cover-image {
+        max-height: 95vh;
+        max-width: 95%;
+        padding: 3px;
+    }
+}
+
