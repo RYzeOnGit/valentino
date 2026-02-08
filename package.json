@@ -1,0 +1,13 @@
+{
+  "name": "valentines-website",
+  "version": "1.0.0",
+  "description": "A cute cat-themed Valentine's Day website",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "start": "python3 -m http.server 8000"
+  },
+  "keywords": ["valentines", "cat", "mobile"],
+  "author": "",
+  "license": "MIT"
+}
+
